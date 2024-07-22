@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import finhub from "../apis/finhub";
+import { useGlobalContext } from "../context";
 
 export default () => {
     const [search, setSearch] = useState("");
     const [possibleWords, setPossibleWords] = useState([]);
+    const { addStock } = useGlobalContext();
 
     const fetchData = async () => {
         try {
@@ -40,21 +42,26 @@ export default () => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <label htmlFor="search">Search</label>
-                <ul className=
-                {
-                    "dropdown-menu " +
-                    (possibleWords.length === 0 ? "d-none" : "show")
-                }
-                style={{
-                    maxHeight: "200px",
-                    overflowY: "scroll",
-                    width: "100%",
-                    cursor: "pointer",
-                }}
+                <ul
+                    className={
+                        "dropdown-menu " +
+                        (possibleWords.length === 0 ? "d-none" : "show")
+                    }
+                    style={{
+                        maxHeight: "200px",
+                        overflowY: "scroll",
+                        width: "100%",
+                        cursor: "pointer",
+                    }}
                 >
                     {possibleWords.map((word) => {
                         return (
-                            <li key={word.symbol}>
+                            <li key={word.symbol} 
+                                onClick={() => {
+                                    addStock(word.symbol);
+                                    setSearch("");
+                                }}
+                            >
                                 <a href="#" className="dropdown-item">
                                     {word.description}
                                 </a>
