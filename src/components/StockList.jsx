@@ -30,7 +30,6 @@ export default () => {
                 const data = ele.data;
                 return { symbol, data };
             });
-            console.log(finalData);
             setStock(finalData);
         } catch (error) {
             console.log(error);
@@ -103,14 +102,17 @@ export default () => {
                                     <td>{ele.data.h}</td>
                                     <td>{ele.data.l}</td>
                                     <td>{ele.data.o}</td>
-                                    <td>{ele.data.pc}
+                                    <td>
+                                        {ele.data.pc}
                                         <button
                                             className="btn btn-danger ml-3 btn-sm delete-button d-inline-block"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 removeStock(ele.symbol);
                                             }}
-                                        >Remove</button>
+                                        >
+                                            Remove
+                                        </button>
                                     </td>
                                 </tr>
                             );

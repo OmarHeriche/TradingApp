@@ -1,33 +1,42 @@
-import React,{useContext,useState} from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 const AppContext = React.createContext();
-const AppProvider = ({children})=>{
-
-    const [watchList, setWatchList] = useState(["GOOGL", "AAPL", "MSFT"]);
+const AppProvider = ({ children }) => {
+    const [watchList, setWatchList] = useState(
+        localStorage.getItem("watchList")?.split(",") || [
+            "AAPL",
+            "MSFT",
+            "GOOGL",
+        ]
+    );
 
     const addStock = (symbol) => {
-        if(watchList.includes(symbol)) return;
+        if (watchList.includes(symbol)) return;
         setWatchList([...watchList, symbol]);
-    }
+    };
     const removeStock = (symbol) => {
-        setWatchList(watchList.filter((ele)=>ele!==symbol));
-    }
+        setWatchList(watchList.filter((ele) => ele !== symbol));
+    };
 
-    return(
+    useEffect(() => {
+        localStorage.setItem("watchList", watchList);
+    }, [watchList]);
+
+    return (
         <AppContext.Provider
             value={{
                 watchList,
                 addStock,
-                removeStock
+                removeStock,
             }}
         >
             {children}
         </AppContext.Provider>
-    )
-}
+    );
+};
 
-const useGlobalContext = ()=>{
+const useGlobalContext = () => {
     return useContext(AppContext);
-}
+};
 
-export {AppProvider, useGlobalContext};
+export { AppProvider, useGlobalContext };

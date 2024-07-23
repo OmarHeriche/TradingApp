@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import MyChart from "../components/MyChart.jsx";
 import axios from "axios";
+import StockInfos from "../components/StockInfos.jsx";
 
 export default () => {
     const { symbol } = useParams();
@@ -41,7 +42,6 @@ export default () => {
             let weeklyData = responses[1].data["Weekly Time Series"];
             let monthlyData = responses[2].data["Monthly Time Series"];
 
-
             dailyData = formatedData(dailyData);
             weeklyData = formatedData(weeklyData);
             monthlyData = formatedData(monthlyData);
@@ -51,8 +51,7 @@ export default () => {
                 week: weeklyData,
                 month: monthlyData,
             });
-            // console.log(dailyData);
-            
+            console.log(dailyData);
         } catch (error) {
             console.log(error);
         }
@@ -64,7 +63,12 @@ export default () => {
 
     return (
         <div>
-            {chartData && <MyChart chartData={chartData} symbol={symbol} />}
+            {chartData && (
+                <div>
+                    <MyChart chartData={chartData} symbol={symbol} />
+                    <StockInfos symbol={symbol} />
+                </div>
+            )}
         </div>
     );
 };
