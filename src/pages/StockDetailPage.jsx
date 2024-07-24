@@ -29,13 +29,13 @@ export default () => {
         try {
             const responses = await Promise.all([
                 axios.get(
-                    `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=8I2OKP760GNJY71R`
+                    `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=demo`
                 ),
                 axios.get(
-                    `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=${symbol}&apikey=8I2OKP760GNJY71R`
+                    `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=${symbol}&apikey=demo`
                 ),
                 axios.get(
-                    `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&apikey=8I2OKP760GNJY71R`
+                    `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${symbol}&apikey=demo`
                 ),
             ]);
             let dailyData = responses[0].data["Time Series (Daily)"];
