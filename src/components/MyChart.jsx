@@ -18,7 +18,6 @@ export default ({ chartData, symbol }) => {
         }
     };
 
-
     const styleButton = (button) => {
         let baseStyle = "btn m-1";
         return button === time
@@ -65,8 +64,14 @@ export default ({ chartData, symbol }) => {
     ];
 
     return (
-        <div className="mt-5 p-4 bg-white shadow-sm">
-            <Chart options={options} series={series} type="area" width="100%" />
+        <div className="mt-5 p-4 bg-white shadow-sm" style={{height:"100vh"}}>
+            <Chart
+                options={options}
+                series={series}
+                type="area"
+                width="100%"
+                height="80%"
+            />
             <div>
                 <button
                     className={styleButton("day")}
@@ -95,4 +100,4 @@ export default ({ chartData, symbol }) => {
             </div>
         </div>
     );
-}
+};

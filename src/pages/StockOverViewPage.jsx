@@ -5,7 +5,7 @@ import StockList from "../components/StockList";
 
 export default () => (
     <div>
-        <h1>StockOverViewPage</h1>
+        <h1 style={{textAlign:"center"}}>Let's Trade</h1>
         <AutoComplete />
         <StockList />
     </div>

@@ -9,8 +9,8 @@ function App() {
         <main className="container">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<StockOverViewPage />} />
-                    <Route path="/detail/:symbol" element={<StockDetailPage />} />
+                    <Route path="/TradingApp" element={<StockOverViewPage />} />
+                    <Route path="/TradingApp/detail/:symbol" element={<StockDetailPage />} />
                     <Route path="*" element={
                         <h1>404 Not Found</h1>
                     } />

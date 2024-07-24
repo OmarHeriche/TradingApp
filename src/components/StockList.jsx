@@ -71,7 +71,7 @@ export default () => {
                                     key={ele.symbol}
                                     className="table-row"
                                     onClick={() => {
-                                        navigate(`/detail/${ele.symbol}`);
+                                        navigate(`/TradingApp/detail/${ele.symbol}`);
                                     }}
                                     style={{ cursor: "pointer" }}
                                 >
