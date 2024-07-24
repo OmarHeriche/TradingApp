@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import finhub from "../apis/finhub";
 import { useNavigate } from "react-router-dom";
+import InProcess from "./InProcess";
 
 //todo icons import:start
 import { BsCaretUpFill, BsCaretDownFill } from "react-icons/bs";
@@ -13,6 +14,7 @@ export default () => {
     const { watchList, removeStock } = useGlobalContext();
 
     const [stock, setStock] = useState();
+    const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
         try {
@@ -33,6 +35,8 @@ export default () => {
             setStock(finalData);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -42,7 +46,9 @@ export default () => {
     }, [watchList]);
     //!use effects: end
 
-    return (
+    return loading === true ? (
+        <InProcess text="LOADING..." />
+    ) : (
         <div>
             <table className="table hover mt-5">
                 <thead style={{ color: "rgb(79,89,102)" }}>
